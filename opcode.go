@@ -6,9 +6,9 @@ import (
 )
 
 var (
-	// ErrUnknownOpcode is returned when the virtual machine has tried to
+	// errUnknownOpcode is returned when the virtual machine has tried to
 	// execute an unknown opcode.
-	ErrUnknownOpcode = errors.New("unknown opcode")
+	errUnknownOpcode = errors.New("unknown opcode")
 )
 
 // opcode represents an opcode for the CHIP-8 virtual machine. It is composed

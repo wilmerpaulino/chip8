@@ -282,7 +282,7 @@ func (vm *VirtualMachine) execute(op opcode) error {
 			vm.sp--
 			vm.pc = vm.stack[vm.sp]
 		default:
-			return ErrUnknownOpcode
+			return errUnknownOpcode
 		}
 	case 0x1000:
 		// Jump to the address encoded in the opcode.
@@ -326,7 +326,7 @@ func (vm *VirtualMachine) execute(op opcode) error {
 				vm.pc += 2
 			}
 		default:
-			return ErrUnknownOpcode
+			return errUnknownOpcode
 		}
 	case 0x6000:
 		// Set VX to the byte constant.
@@ -426,7 +426,7 @@ func (vm *VirtualMachine) execute(op opcode) error {
 			vm.v[y] <<= 1
 			vm.v[x] = vm.v[y]
 		default:
-			return ErrUnknownOpcode
+			return errUnknownOpcode
 		}
 	case 0x9000:
 		switch op & 0xf00f {
@@ -439,7 +439,7 @@ func (vm *VirtualMachine) execute(op opcode) error {
 				vm.pc += 2
 			}
 		default:
-			return ErrUnknownOpcode
+			return errUnknownOpcode
 		}
 	case 0xa000:
 		// Set the address register to the address encoded in the opcode.
@@ -498,7 +498,7 @@ func (vm *VirtualMachine) execute(op opcode) error {
 				vm.pc += 2
 			}
 		default:
-			return ErrUnknownOpcode
+			return errUnknownOpcode
 		}
 	case 0xf000:
 		switch op & 0x00ff {
@@ -564,10 +564,10 @@ func (vm *VirtualMachine) execute(op opcode) error {
 				vm.i++
 			}
 		default:
-			return ErrUnknownOpcode
+			return errUnknownOpcode
 		}
 	default:
-		return ErrUnknownOpcode
+		return errUnknownOpcode
 	}
 
 	return nil
